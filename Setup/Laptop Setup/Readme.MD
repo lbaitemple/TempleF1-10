@@ -56,6 +56,9 @@ Starting macOS 10.13, aka macOS High Sierra, Option `"Restart in OS X"` is not a
 4. In the _Shrink Menu_, enter the amount of space to shrink.
 <br />- The **entered amount** will be your Ubuntu volume and the rest will stay in Windows. Use the equation 1GB = 1000MB to determine the desired size.
 
-5. After finish shrinking the disk, format the new volume into NTFS format by right click on the corresponding volume in Disk Management and select format.
+5. After finish shrinking the disk, format the new volume into NTFS format by right click on the corresponding volume in Disk Management and select `format`.
 
 6. Go to Ubuntu’s official site and download desired firmware for ubuntu. Usually, we use the latest desktop LTS version unless suggested otherwise. [Here is the link](https://www.ubuntu.com/download/desktop)
+
+7. Plug in a USB drive, at least 2GB, and create a bootable USB from Windows 10.
+<br />- MAC: Upon reboot into the bootable USB, hold ALT button to choose the USB. [Here is the instruction on creating a bootable USB on Windows 10](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows#0)
