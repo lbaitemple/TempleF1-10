@@ -8,6 +8,6 @@
 
 You can find the full document in the Document Folder. **OR** You can follow the instruction in each folder 
 
-###### Instruction:
+##### Instruction:
 1. Use Setup Folder for Setup Instructions
 2. Use Code Folder for code references.
