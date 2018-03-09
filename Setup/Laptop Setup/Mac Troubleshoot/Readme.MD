@@ -25,6 +25,9 @@
 
 
 - #### Enter Tribooting Screen by default upon reboot via rEFInd
+**NOTICE** You can always hold `ALT` upon reboot to choose operating system if you do not want to use rEFInd.
+
+
 1. Reboot Mac into recovery mode by holding `Command` and `R` at the same time.
 
 2. Go to _Utilities > Terminal_.
