@@ -11,7 +11,7 @@
 
 5. In gdisk, press `X` to enter expert menu.
 
-6. Press `N` to creat a new and the press `W` to write and confirm the change.
+6. Press `N` to creat a new and then press `W` to write and confirm the change.
 
 
 - #### Change default boot to Mac in Ubuntu
