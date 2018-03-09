@@ -61,3 +61,29 @@
 22. Use command `$ nmap -sP 192.168.1.0/24` to find out all the connection to the network that the Jetson is on. The LIDAR should also show up in the form of its corresponding IP address.
 
 **NOTICE:** To find Streaming data, refer to Mapping.
+
+
+#### Break Bridge
+
+**Notice:** If you want to type commands directly to break bridge, use the command in Step 2.
+
+1. Create a new file on the Desktop.
+
+2. In the file, enter the following lines: <br />
+  `sudo ifconfig br0 192.168.1.99 netmask 255.255.255.0 down` <br />
+  `sudo brutal delif br0 eth0` <br />
+  `sudo brutal delif br0 eth1` <br />
+  `sudo brutal delbr br0` <br />
+  `ifconfig br0`
+  
+3. Save and exit the file.
+
+4. Right click on the file and go to properties.
+
+5. In _Properties > Basic_, change the name into `BreakBridge.sh`.
+
+6. In _Properties > Permission_, allow executing file as program.
+
+7. Save and exit _Properties_.
+
+8. Now if you drag this file into a Terminal, it will break the bridge created for the LINDAR. If it shows up as “error fetching interface information: Device not found”, it means the bridge has been deleted.
