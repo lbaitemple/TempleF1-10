@@ -20,7 +20,7 @@ We will first install Windows 10 in Macbook running macOS 10.12.5 and then insta
 5. Open _Boot Camp Assistant_. It can be found under _LaunchPad > Utilities_ or search it from Spotlight Search or ask Siri to find it for you.
 
 <p align="center">
-  <img src="https://github.com/UniKerogen/TempleF1-10/blob/master/Documents/Miscellaneous/Pictures/BootcampSearch.png?raw=true" width="50%" unselectable="on"/>
+  <img src="https://github.com/UniKerogen/TempleF1-10/blob/master/Documents/Miscellaneous/Pictures/BootcampSearch.png?raw=true" width="50%" unselectable="on" pointer-events="none"/>
 </p>
 
 6. Click `Continue`.
