@@ -19,11 +19,13 @@ We will first install Windows 10 in Macbook running macOS 10.12.5 and then insta
 
 5. Open _Boot Camp Assistant_. It can be found under _LaunchPad > Utilities_ or search it from Spotlight Search or ask Siri to find it for you.
 
+<p align="center">
+  <img src="https://github.com/UniKerogen/TempleF1-10/blob/master/Documents/Miscellaneous/Pictures/BootcampSearch.png?raw=true" width="50%"/>
+</p>
+
 6. Click `Continue`.
 
-
 7. Check `Create a Windows 7 or later version install disk`. Then `Continue`.
-
 
 8. Select the iso file just downloaded from Microsoft, then `Continue`.
 
@@ -50,6 +52,10 @@ Starting macOS 10.13, aka macOS High Sierra, Option `"Restart in OS X"` is not a
 1. Back up Windows 10 into an external storage unit.
 
 2. In Windows 10, right click on the Windows logo in the task bar and select `Disk Management`.
+
+<p align="center">
+  <img src="https://github.com/UniKerogen/TempleF1-10/blob/master/Documents/Miscellaneous/Pictures/WindowsDiskManagement.png?raw=true" width="50%"/>
+</p>
 
 3. In _Disk Management_, select _WindowsOS Volume_, (C:), and right click then select `Shrink`.
 
