@@ -5,7 +5,7 @@ We will first install Windows 10 in Macbook running macOS 10.12.5 and then insta
 
 **IF** you are running Windows 10 already, skip to _Setting up Ubuntu on Windows_
 
-### Setting up Windows on Mac
+- ### Setting up Windows on Mac
 **Before** you try any of this, make sure your laptop is backed up.
 
 1. Make sure that you have sufficient storage space for your Mac.
@@ -44,7 +44,7 @@ We will first install Windows 10 in Macbook running macOS 10.12.5 and then insta
 #### **Notice:**
 Starting macOS 10.13, aka macOS High Sierra, Option `"Restart in OS X"` is not avaliable. You will need to hold `alt` while booting, specifically after hearing the starting sound, in order to switch operating systems.
 
-### Setting up Ubuntu on Windows
+- ### Setting up Ubuntu on Windows
 **Before** you try this, make sure your laptop is backed up
 
 1. Back up Windows 10 into an external storage unit.
