@@ -22,18 +22,18 @@ We will first install Windows 10 in Macbook running macOS 10.12.5 and then insta
 6. Click `Continue`.
 
 
-7. Check “Create a Windows 7 or later version install disk”. Then `Continue`.
+7. Check `Create a Windows 7 or later version install disk`. Then `Continue`.
 
 
 8. Select the iso file just downloaded from Microsoft, then `Continue`.
 
-9. In “Create a Partition for Windows”, the partition of Windows means the total size of Windows 10 and Ubuntu. So as recommended, slide the bar and make sure it is 60GB for Windows. Then Install. <br />- During the process, Mac will automatically download the support file and drives. It will restart when it is done.
+9. In _Create a Partition for Windows_, the partition of Windows means the total size of Windows 10 and Ubuntu. So as recommended, slide the bar and make sure it is 60GB for Windows. Then Install. <br />- During the process, Mac will automatically download the support file and drives. It will restart when it is done.
 
 10. Once Mac reboot into the installation process, select your desired language, number formats, and keyboard. Then click on `Next`.
 
 11. If you have a active key, active Windows. Otherwise click on `Skip`.
 
-12. Once prompt “Where do you want to install Windows”, select the drive that has 60GB, usually it will show up as _“Drive 0 partition X: BOOTCAMP”_ and format the drive. After formation, click on `Next`.
+12. Once prompt _Where do you want to install Windows_, select the drive that has 60GB, usually it will show up as _“Drive 0 partition X: BOOTCAMP”_ and format the drive. After formation, click on `Next`.
 
 13. Windows **now** will start the installation.
 
