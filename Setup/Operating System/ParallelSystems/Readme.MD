@@ -59,8 +59,16 @@ Starting macOS 10.13, aka macOS High Sierra, Option `"Restart in OS X"` is not a
 
 3. In _Disk Management_, select _WindowsOS Volume_, (C:), and right click then select `Shrink`.
 
+<p align="center">
+  <img src="https://github.com/UniKerogen/TempleF1-10/blob/master/Documents/Miscellaneous/Pictures/WindowsShrink1.png?raw=true" width="50%"/>
+</p>
+
 4. In the _Shrink Menu_, enter the amount of space to shrink.
 <br />- The **entered amount** will be your Ubuntu volume and the rest will stay in Windows. Use the equation 1GB = 1000MB to determine the desired size.
+
+<p align="center">
+  <img src="https://github.com/UniKerogen/TempleF1-10/blob/master/Documents/Miscellaneous/Pictures/WindowsShrink2.png?raw=true" width="50%"/>
+</p>
 
 5. After finish shrinking the disk, format the new volume into NTFS format by right click on the corresponding volume in Disk Management and select `format`.
 
