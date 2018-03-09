@@ -60,5 +60,28 @@ Starting macOS 10.13, aka macOS High Sierra, Option `"Restart in OS X"` is not a
 
 6. Go to Ubuntu’s official site and download desired firmware for ubuntu. Usually, we use the latest desktop LTS version unless suggested otherwise. [Here is the link](https://www.ubuntu.com/download/desktop)
 
-7. Plug in a USB drive, at least 2GB, and create a bootable USB from Windows 10.
-<br />- MAC: Upon reboot into the bootable USB, hold ALT button to choose the USB. [Here is the instruction on creating a bootable USB on Windows 10](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows#0)
+7. Plug in a USB drive, at least 2GB, and create a bootable USB from Windows 10. [Here is the instruction on creating a bootable USB on Windows 10](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows#0)
+<br />- MAC: Upon reboot into the bootable USB, hold `ALT` button to choose the USB.
+<br />- Windows: Upon reboot into the bootable USB, hole `F11` to choose the USB. You can also use other methods.
+
+8. Once it starts up, select _Try Ubuntu_ using arrow keys.
+
+9. In the Try Ubuntu session, **make sure everything works**, including network and keyboard.
+
+10. Double click on `install Ubuntu` on the desktop to start the installation. Do **NOT** worry if Wifi is not connected during the installation.
+
+11. During the pre-installation, follow the instruction until prompted _Allocate drive space_.
+
+12. In Allocate drive space, select `Something else`.
+
+13. Select the desired disk and format it into **EXT4 format**. If you need a swap space, you can separate desired portion from the EXT4 disk and format into Swap.
+
+14. Select `/dev/sda1` as boot-loader installation. Then click on `install Now`.
+
+15. Follow the instruction during the installation.
+
+16. **If** you are a Mac User, in “keyboard layout”, select `Macintosh keyboard layout`.
+
+17. In _Who are you?_, we suggest to check the _Log in automatically_ selection.
+
+18. After the installation, **_if_** you are a Mac User, do **NOT** restart Mac now and go to the _Mac Troubleshoot_ section.
