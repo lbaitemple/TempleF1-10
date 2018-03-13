@@ -16,7 +16,7 @@
 
 6. Save, exit and close the Terminal.
 
-7. Open a new Terminal. Drag and run the “Bridge.sh” file on the desktop **OR** run the bridge instruction. [Find Details Here](https://github.com/UniKerogen/TempleF1-10/tree/master/Setup/Jetson/Bridges)
+7. Open a new Terminal. Drag and run the “Bridge.sh” file on the desktop **OR** run the bridge instruction. [Find Details Here](https://github.com/UniKerogen/TempleF1-10/tree/master/Setup/Jetson/Bridges#adding-a-bridge-on-the-jetson-board)
 
 8. Use command `$ roscore` to bring ROS online.
 
@@ -105,3 +105,36 @@
 17. Once finish, press `q` in Terminal 3 and `Control` + `C` in Terminal 1 & 2 to quit.
 
 ## Automatic Mode
+
+**NOTICE I:** Make sure to try to drive with keyboard first before continue.<br />
+**NOTICE II:** You have to complete the code in python file `control.py` and `dist_finder.py`. <br />
+**NOTICE III:** After moving those three files mentioned below, there should be five python files in the directory, two of them should be moved in the pervious [Drive with Keyboard](https://github.com/UniKerogen/TempleF1-10/tree/master/Running/Instructions#drive-with-keyboard) section. <br />
+**NOTICE IV:** Please Follow Terminal Steps.
+
+1. On the Jetson, open two python files in directory, _~/catkin_ws_race/arc/race/src_, named `control.py` and `dist_finder.py`.
+
+2. Create, input and make sure your code are in those two files.
+
+3. After you finish those two files together with `kill.py` in the same directory, copy them to directory _~/catkin_ws_race/install/share/race_.
+
+4. In your laptop, open **seven** terminals and SSH all of them into the Jetson.
+
+5. In Terminal 1, use command `$ roscore` to initialize ROS system.
+
+6. In Terminal 2, use command `$ ‘/home/ubuntu/Desktop/Bridge.sh’` to build the bridge of the LIDAR and the Jetson.
+
+7. In Terminal 2, use command `$ rosrun urg_node urg_node _ip_address:=192.168.1.11` to start LIDAR broadcasting.
+
+8. In Terminal 3, use command `$ rosrun rosserial_python serial_node.py /dev/ttyACM0` to start the communication between the Teensy and the Jetson.
+
+9. In Terminal 4, use command `$ rosrun race talker.py` to start the talker.
+
+10. In Terminal 5, use command `$ rosrun race kill.py` to make the kill operation standby.
+
+11. In Terminal 6, use command `$ rosrun race control.py` to start the auto-control of the car.
+
+12. In Terminal 7, use command `$ rosrun race dist_finder.py` to start the distance finding procedure. And once you enter this command, the car will start moving.
+
+13. Use `\` for normal stop and `(SPACE)` for emergency stop of the car in Terminal 5.
+
+14. Use `control` + `c` to close other Terminals.
