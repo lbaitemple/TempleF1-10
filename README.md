@@ -9,5 +9,6 @@
 You can find the full document in the Document Folder. **OR** You can follow the instruction in each folder 
 
 ##### Instruction:
-1. Use Setup Folder for Setup Instructions
-2. Use Code Folder for code references.
+1. Use Setup Folder for Setup Instructions.
+2. For building the car physically, please reference to the [Official Website](http://f1tenth.org/car-assembly)
+3. Use Running Folder for code references.
