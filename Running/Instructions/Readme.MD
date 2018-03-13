@@ -1,4 +1,4 @@
-### Running Partially
+## Running Partially
 
 #### Mapping in Real Time
 
@@ -103,3 +103,5 @@
 16. Now the car should be respond to the keyboard commands. It should start moving at up/down 5ish and left/right depending on the visibility of the input angle.
 
 17. Once finish, press `q` in Terminal 3 and `Control` + `C` in Terminal 1 & 2 to quit.
+
+## Automatic Mode
