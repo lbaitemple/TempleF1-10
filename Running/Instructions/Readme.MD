@@ -68,6 +68,7 @@
 </p>
 
 #### Drive with Keyboard
+**NOTICE:** Make sure you have folder _f1_10_code_public_ in your directory, if not, use command `git clone https://github.com/mlab-upenn/f1_10_code_public/` to download files.
 
 1. On Jetson, use command `$ mkdir -p catkin_ws_race/src` in a new Terminal to create file directory for race topic.
 
