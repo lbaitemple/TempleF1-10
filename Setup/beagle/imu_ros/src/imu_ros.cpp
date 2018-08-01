@@ -1,0 +1,197 @@
+extern "C"
+{
+#include "rc_usefulincludes.h"
+}
+extern "C"
+{  
+#include "roboticscape.h"
+}
+#include <ros/ros.h>
+#include "std_msgs/String.h"
+#include "sensor_msgs/Imu.h"
+
+#include "race/drive_param.h"
+#include <unistd.h>
+
+#define SAMPLE_RATE_HZ 100  // main filter and control loop speed
+#define MOTOR_ANGLE   3
+#define MOTOR_VEL 2
+float   time_last_good_ros_command_sec = 0.0;
+
+ros::Publisher              state_publisher;
+void monitor_imu();
+rc_imu_data_t imu_data;
+
+
+/*******************************************************************************
+ * shutdown_signal_handler(int signo)
+ *
+ * catch Ctrl-C signal and change system state to EXITING
+ * all threads should watch for get_state()==EXITING and shut down cleanly
+ *******************************************************************************/
+void ros_compatible_shutdown_signal_handler(int signo)
+{
+  if (signo == SIGINT)
+    {
+      rc_set_state(EXITING);
+      ROS_INFO("\nReceived SIGINT Ctrl-C.");
+      ros::shutdown();
+    }
+  else if (signo == SIGTERM)
+    {
+      rc_set_state(EXITING);
+      ROS_INFO("Received SIGTERM.");
+      ros::shutdown();
+    }
+}
+
+
+void CmdCallback(const race::drive_param::ConstPtr& cmd)
+{
+
+//  cmd->velocity
+//  cmd->angle
+  rc_set_motor(MOTOR_ANGLE, cmd->angle);
+  rc_set_motor(MOTOR_VEL, cmd->velocity);
+  time_last_good_ros_command_sec = ros::Time::now().toSec();
+
+  return;
+}
+
+
+
+/*******************************************************************************
+ * main()
+ *
+ * Initialize the filters, IMU, threads, & wait untill shut down
+ *******************************************************************************/
+int main(int argc, char** argv)  
+{
+
+  // Announce this program to the ROS master as a "node" called "edumip_balance_ros_node"
+  ros::init(argc, argv, "edumip_balance_ros_node");
+
+  // Start the node resource managers (communication, time, etc)
+  ros::start();
+
+  // Broadcast a simple log message
+  ROS_INFO("File %s compiled on %s %s.",__FILE__, __DATE__, __TIME__);
+
+  // Create nodehandle
+  ros::NodeHandle edumip_node;
+
+  // Advertise the topics this node will publish
+  state_publisher = edumip_node.advertise<sensor_msgs::Imu>("imu/state", 10);
+
+  // subscribe the function CmdCallback to the topuc edumip/cmd
+  ros::Subscriber sub_cmd = edumip_node.subscribe("edumip/cmd", 10, CmdCallback);
+
+  
+  if(rc_initialize()<0)
+    {
+      ROS_INFO("ERROR: failed to initialize cape.");
+      return -1;
+    }
+
+  rc_set_state(UNINITIALIZED);
+
+  while(rc_get_state()!=EXITING) rc_usleep(1000);
+  // start printf_thread if running from a terminal
+  // if it was started as a background process then don't bother
+  // 2017-11-19 LLW comment out isatty() call that prevents this program from
+  //                being run from a launch file
+  // set up IMU configuration
+  rc_imu_config_t imu_config = rc_default_imu_config();
+  imu_config.dmp_sample_rate = SAMPLE_RATE_HZ;
+  imu_config.orientation = ORIENTATION_Y_UP;
+
+  // start imu
+  if(rc_initialize_imu_dmp(&imu_data, imu_config)){
+    ROS_INFO("ERROR: can't talk to IMU, all hope is lost\n");
+    rc_blink_led(RED, 5, 5);
+    return -1;
+  }
+
+  // 2017-01-10 overide the robotics cape default signal handleers with
+  // one that is ros compatible
+  signal(SIGINT,  ros_compatible_shutdown_signal_handler);	
+  signal(SIGTERM, ros_compatible_shutdown_signal_handler);	
+	
+
+  // this should be the last step in initialization 
+  // to make sure other setup functions don't interfere
+  rc_set_imu_interrupt_func(&monitor_imu);
+	
+  // start in the RUNNING state, pressing the puase button will swap to 
+  // the PUASED state then back again.
+  ROS_INFO("\nHold your MIP upright to begin balancing\n");
+  rc_set_state(RUNNING);
+	
+  // chill until something exits the program
+  // while(rc_get_state()!=EXITING){
+  //   rc_usleep(10000);
+  // }
+
+  // Process ROS callbacks until receiving a SIGINT (ctrl-c)
+  ros::spin();
+
+  // news
+  ROS_INFO("Exiting!");
+
+  // shut down the pthreads
+  rc_set_state(EXITING);
+
+  // Stop the ROS node's resources
+  ros::shutdown();
+	
+  // cleanup
+  rc_power_off_imu();
+  rc_cleanup();
+  return 0;
+}
+
+/*******************************************************************************
+ * void balance_controller()
+ *
+ * discrete-time balance controller operated off IMU interrupt
+ * Called at SAMPLE_RATE_HZ
+ *******************************************************************************/
+void monitor_imu()
+{
+  sensor_msgs::Imu msg;
+  msg.header.stamp = ros::Time::now();
+  msg.header.frame_id = '0';  // no frame
+
+  rc_imu_data_t data; 
+  const float la_rescale = 16384.0 / 9.807;
+
+  // acc data
+  if( rc_read_accel_data(&data)<0){
+     printf("read accel data failed\n");
+  }
+  else{
+     ROS_INFO("acce %f, %f, %f.",data.accel[0], data.accel[1], data.accel[2]);
+     msg.linear_acceleration.x = data.accel[0] / la_rescale;
+     msg.linear_acceleration.y = data.accel[1] / la_rescale;
+     msg.linear_acceleration.z = data.accel[2] / la_rescale;
+  }
+  if(rc_read_gyro_data(&data)<0){
+     printf("read gyro data failed\n");
+  }
+  else{
+    msg.angular_velocity.x = data.gyro[0]/131;
+    msg.angular_velocity.y = data.gyro[1]/131;
+    msg.angular_velocity.z = data.gyro[2]/131;
+  }
+  if(rc_read_mag_data(&data)<0){
+     printf("read mag data failed\n");
+  }
+  else{
+
+  }
+
+  state_publisher.publish(msg);
+
+  return;
+}
+
