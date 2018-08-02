@@ -74,6 +74,7 @@ void CmdCallback(const race::drive_param::ConstPtr& cmd)
 
 /*******************************************************************************
  * main()
+ * rostopic pub -r 10 /cmd race/drive_param '{velocity: 0.2, angle: 0.2}' 
  *
  * Initialize the filters, IMU, threads, & wait untill shut down
  *******************************************************************************/
