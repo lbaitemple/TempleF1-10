@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="port" default="/dev/ttyACM0" />
+    <arg name="sport" default=12/>
+   
+    <node name="imu" pkg="imu_ros" type="imu_node.py">
+    <param name="serialport" value="$(arg port)"/>
+    </node>
+    <node name="drive" pkg="rpimotor" type="drive.py" />
+
+</launch>
